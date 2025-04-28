@@ -1,5 +1,0 @@
-22257462 Meng Siyu （Overall page design, database establishment, and implementation of main functions）
-
-23201169 Cheng Hung Tsun （Internal staff part）
-
-23234873 Law Yuet Ying Agnes （Customer search product info part）
