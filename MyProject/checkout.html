@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('./assets/images/BG2.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: top center; 
+    color: #333;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+#checkout-section {
+    background: rgba(255, 255, 255, 0.8); 
+    margin: 5% auto; 
+    width: 80%; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#checkout-form button {
+    background-color: #007bff; 
+}
+
+#checkout-form button:hover {
+    background-color: #0056b3; 
+}
+
+h1, h3 {
+    text-align: center; 
+    color: #333;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#summary {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#confirm-order {
+    display: block;
+    margin: 10px auto;
+    background-color: #28a745; 
+}
+
+#confirm-order:hover {
+    background-color: #218838; 
+}
+
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="email"] {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #summary {
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        #confirm-order {
+            margin-top: 10px;
+            background-color: #28a745;
+        }
+
+        #confirm-order:hover {
+            background-color: #218838;
+        }
+
+        .return-home {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #6c757d;
+            border-radius: 4px;
+            width: fit-content;
+        }
+
+        .return-home:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <a href="./index.html" class="return-home">Return to Home</a>
+    <div id="checkout-section">
+        <form id="checkout-form">
+            <label for="email">Enter your email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="button" onclick="fetchCustomerData()">Fetch Customer Info</button>
+        </form>
+        <div id="summary">
+            <h3>Your Cart Summary:</h3>
+            <p id="customer-class"></p>
+            <p id="total-amount"></p>
+            <button id="confirm-order" style="display:none;" onclick="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+
+        const customerClassMap = {
+            1: "Normal Customer",
+            2: "Silver Customer",
+            3: "Gold Customer"
+        };
+
+
+        // get_cart.php
+        async function fetchCartData() {
+            try {
+                const response = await fetch('./api/get_cart.php');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch cart data');
+                }
+                return await response.json();
+            } catch {
+                alert('Failed to fetch cart data.');
+                return [];
+            }
+        }
+
+        // get_customer.php
+        async function fetchCustomerData() {
+            const email = document.getElementById('email').value;
+
+            try {
+                const response = await fetch(`./api/get_customer.php?email=${email}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch customer data');
+                }
+
+                const customer = await response.json();
+                if (customer.CustomerClass) {
+                    const customerClassName = customerClassMap[customer.CustomerClass] || "Unknown Customer Class";
+                    document.getElementById("customer-class").innerText = `Customer Class: ${customerClassName}`;
+
+                    
+                    cart = await fetchCartData();
+                    calculateAmount(cart, customer);
+                } else {
+                    document.getElementById('customer-class').innerText = 'Customer not found.';
+                }
+            } catch {
+                alert('Failed to fetch customer info.');
+            }
+        }
+
+        // calculate_amount.php
+        function calculateAmount(cart, customer) {
+            const discountMap = { 1: 0, 2: 0.04, 3: 0.065 };
+            const discount = discountMap[customer.CustomerClass] || 0;
+            let totalAmount = 0;
+
+            cart.forEach(item => {
+                const originalAmount = item.price * item.quantity;
+                totalAmount += originalAmount * (1 - discount);
+            });
+
+            document.getElementById('total-amount').innerText = `Total Amount: $${totalAmount.toFixed(2)}`;
+            document.getElementById('confirm-order').style.display = 'block';
+        }
+
+        // confirm_order.php
+        async function confirmOrder() {
+    const email = document.getElementById('email').value;
+
+    try {
+        const response = await fetch('./api/confirm_order.php', {
+            method: 'POST',
+            body: JSON.stringify({ email, cart }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json(); // get detailed error data
+            alert(`Order failed: ${errorData.error}`); // show error message
+            return;
+        }
+
+        const result = await response.json();
+        alert(result.message);
+    } catch (error) {
+        alert('Error confirming order. Please try again.');
+    }
+}
+
+    </script>
+</body>
+</html>

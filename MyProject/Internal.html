@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Magic Decorations - Product Maintenance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #c41e3a; /* 红色 */
+            --secondary: #165b33; /* 深绿色 */
+            --accent: #f8b229; /* 黄色 */
+            --light: #f4f4f4; /* 浅灰 */
+            --text-dark: #333; /* 深灰 */
+        }
+
+        html, body {
+            height: 100%; /* 确保背景填满页面高度 */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('./assets/images/BG3.jpg'); /* 确保路径正确 */
+            background-size: cover; /* 背景图片自动适配全屏 */
+            background-repeat: no-repeat;
+            background-position: center top;
+            color: var(--text-dark); 
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: rgba(196, 30, 58, 0.9); 
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        table {
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            font-size: 1rem;
+            text-align: left;
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        table th {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        table td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        table td a {
+            text-decoration: none;
+            color: var(--secondary); 
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        table td a:hover {
+            color: white;
+            background-color: var(--primary); 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 2L9 9H2L7 14L5 22L12 17L19 22L17 14L22 9H15L12 2Z"/>
+                </svg>
+                Christmas Magic
+            </div>
+            <div class="nav-links">
+                <a href="http://localhost/MyProject/index.html">Home</a>
+                <a href="http://localhost/MyProject/products.html">Products</a>
+                <a href="./internal.html">Internal Staff</a>
+                <a class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Internal Staff Programs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="Product Maintenance.html">Product Maintenance Program</a></td>
+            </tr>
+            <tr>
+                <td><a href="Customer Maintenance.html">Customer Maintenance Program</a></td>
+            </tr>
+            <tr>
+                <td><a href="Orders Information.html">Orders Information Program</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

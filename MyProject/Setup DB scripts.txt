@@ -1,0 +1,71 @@
+CREATE DATABASE myDB;
+
+use myDB;
+
+CREATE TABLE MyCustomers (
+             custNo          VARCHAR(30) NOT NULL PRIMARY KEY,
+             custName        VARCHAR(30) NOT NULL,
+             custClass       INT(1),
+             custAccumBonus  INT(6),
+             custEmail       VARCHAR(30)
+             );
+
+CREATE TABLE MyProducts (
+             productID      VARCHAR(30) NOT NULL PRIMARY KEY,
+             productDesc    VARCHAR(30) NOT NULL,
+             productPrice   Decimal(6,2),
+             productQty     INT(5),
+             productPicName VARCHAR(30)
+             );
+
+CREATE TABLE MyOrders (
+             orderNo        INT(6)      UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+             orderDate      DATE,
+             orderCustNo    VARCHAR(30),
+             orderProdID    VARCHAR(30),
+             orderProdPrice Decimal(6,2),
+             orderQty       INT(6),
+             orderOrigAmt   Decimal(6,2),
+             orderDiscount  Decimal(3,2),
+             orderNetAmt    Decimal(6,2)
+             );
+
+INSERT INTO MyCustomers (custNo, custName, custClass, custAccumBonus, custEmail)
+                 VALUES ('C01' , 'Name of C01',    1,           5566, 'C01email@gmail.com');
+
+INSERT INTO MyCustomers (custNo, custName, custClass, custAccumBonus, custEmail)
+                 VALUES ('C02' , 'Name of C02',    2,           1108, 'C02email@gmail.com');
+
+INSERT INTO MyCustomers (custNo, custName, custClass, custAccumBonus, custEmail)
+                 VALUES ('C03' , 'Name of C03',    3,           2500, 'C03email@gmail.com');
+
+
+
+INSERT INTO MyProducts (productID, productDesc  , productPrice, productQty, productPicName)
+                VALUES ('P01'    , 'Desc of P01',          6.8,         20, 'P1.jpg');
+INSERT INTO MyProducts (productID, productDesc  , productPrice, productQty, productPicName)
+                VALUES ('P02'    , 'Desc of P02',           16,         11, 'P2.jpg');
+INSERT INTO MyProducts (productID, productDesc  , productPrice, productQty, productPicName)
+                VALUES ('P03'    , 'Desc of P03',           20,          7, 'P7.jpg');
+
+
+
+INSERT INTO MyOrders   (orderDate, orderCustNo, orderProdID, orderProdPrice, orderQty, orderOrigAmt, 
+                        orderDiscount, orderNetAmt)
+              VALUES   ('2024-11-1',      'C01',       'P01',           6.8,        2,         13.6,
+                                0,          13.6);
+INSERT INTO MyOrders   (orderDate, orderCustNo, orderProdID, orderProdPrice, orderQty, orderOrigAmt, 
+                        orderDiscount, orderNetAmt)
+              VALUES   ('2024-11-4',      'C01',       'P02',            16,        1,         16,
+                                0,          16);
+
+INSERT INTO MyOrders   (orderDate, orderCustNo, orderProdID, orderProdPrice, orderQty, orderOrigAmt,
+                        orderDiscount, orderNetAmt)
+              VALUES   ('2024-11-2',       'C02',       'P02',            16,        3,           48, 
+                               0.04,         46.08);
+INSERT INTO MyOrders (orderDate, orderCustNo, orderProdID, orderProdPrice, orderQty, orderOrigAmt,
+                        orderDiscount, orderNetAmt)
+             VALUES   ('2024-11-3',       'C03',       'P03',             20,        1,           20,
+                              0.06,       18.80);
+
+

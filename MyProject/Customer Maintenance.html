@@ -1,0 +1,201 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Magic Decorations - Customer Maintenance</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #c41e3a;
+            --secondary: #165b33;
+            --accent: #f8b229;
+            --light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light);
+        }
+
+        nav {
+            background-color: var(--primary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #2e4524;
+            margin: 60px;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2e4524;
+	        font-family: "Times New Roman", Times, serif;
+        }
+
+        table {
+            margin: 20px auto;
+            font-size: 16px;
+            background-color: #fcfcf2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	        font-family: "Times New Roman", Times, serif;
+        }
+
+        table td {
+            text-align: left;
+        }
+
+        input[type="radio"], input[type="email"], input[type="text"], input[type="submit"],     input[type="reset"] {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #8a2c0a;
+        }
+            input[type="radio"]:checked {
+            background-color: #8a2c0a; /* Change the color to red when selected */
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background-color: #8a2c0a;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #8a2c0a;
+        }
+
+        hr {
+            border-top: 2px solid #2e4524;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function welcomeUser() {
+            alert("Welcome to the Customer Maintenance program!");
+        }
+
+        window.onload = welcomeUser;
+    </script>
+</head>
+<body>
+ <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2L9 9H2L7 14L5 22L12 17L19 22L17 14L22 9H15L12 2Z"/>
+                    </svg>
+                    Christmas Magic
+                </div>
+                <div class="nav-links">
+                    <a href="http://localhost/MyProject/index.html">Home</a>
+                    <a href="http://localhost/MyProject/products.html">Products</a>
+		        <a  href="./internal.html">Internal Staff</a>
+                    <a href="http://localhost/MyProject/login.html">Login</a>
+                    <a href="http://localhost/MyProject/cart.html" class="cart-icon">
+                        🛒
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+    <form method="POST" action="http://127.0.0.1/MyProject/Customer Maintenance.php">
+
+    <h1 style="text-align:center;">Customer Maintenance</h1>
+
+        <hr>
+
+        <table border="0">
+            <tr>
+                <td>Action:</td>
+                <td>
+                    <input type="radio" name="myAction" value="A"/>Add
+                    <input type="radio" name="myAction" value="C"/>Change
+                </td>
+            </tr>
+            <tr>
+                <td>Customer No.</td>
+                <td>
+                    <input type="text" name="myCustNo" placeholder="enter customer number" size="20">
+                </td>
+            </tr>
+            <tr>
+                <td>Customer Name:</td>
+                <td>
+                    <input type="text" name="myCustName" placeholder="enter customer name" size="40">
+                </td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td>
+                    <input type="radio" name="myClass" value="N"/>Normal
+                    <input type="radio" name="myClass" value="S" checked/>Silver
+                    <input type="radio" name="myClass" value="G"/>Gold
+                </td>
+            </tr>
+            <tr>
+                <td>Accumulated Bonus Point:</td>
+                <td>
+                    <input type="text" name="myBonus" placeholder="bonus points" size="20">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="email" name="myEmail" placeholder="enter email address" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Send">
+                    <input type="reset" value="Clear">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
